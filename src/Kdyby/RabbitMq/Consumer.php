@@ -82,7 +82,7 @@ class Consumer extends \Kdyby\RabbitMq\BaseConsumer
 		$this->setupConsumer();
 		$this->onStart($this);
 
-		$previousErrorHandler = \set_error_handler(static function ($severity, $message, $file, $line, $context) use (&$previousErrorHandler) {
+		$previousErrorHandler = \set_error_handler(static function ($severity, $message, $file, $line) use (&$previousErrorHandler) {
 			if (!\preg_match('~stream_select\\(\\)~i', $message)) {
 				$args = \func_get_args();
 				return \call_user_func_array($previousErrorHandler, $args);
