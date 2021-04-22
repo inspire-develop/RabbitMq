@@ -90,7 +90,7 @@ abstract class BaseConsumerCommand extends \Symfony\Component\Console\Command\Co
 	 * @param \Symfony\Component\Console\Input\InputInterface $input An InputInterface instance
 	 * @param \Symfony\Component\Console\Output\OutputInterface $output An OutputInterface instance
 	 */
-	protected function execute(InputInterface $input, OutputInterface $output): void
+	protected function execute(InputInterface $input, OutputInterface $output)
 	{
 		$this->consumer->consume($this->amount);
 	}
