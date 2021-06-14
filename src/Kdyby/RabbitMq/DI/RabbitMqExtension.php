@@ -12,6 +12,11 @@ declare(strict_types = 1);
 
 namespace Kdyby\RabbitMq\DI;
 
+use Kdyby\RabbitMq\Command\ConsumerCommand;
+use Kdyby\RabbitMq\Command\PurgeConsumerCommand;
+use Kdyby\RabbitMq\Command\RpcServerCommand;
+use Kdyby\RabbitMq\Command\SetupFabricCommand;
+use Kdyby\RabbitMq\Command\StdInProducerCommand;
 use Nette;
 use Nette\DI\Config;
 use Nette\Utils\Validators;
@@ -588,16 +593,16 @@ class RabbitMqExtension extends \Nette\DI\CompilerExtension
 		$builder = $this->getContainerBuilder();
 
 		foreach ([
-			\Kdyby\RabbitMq\Command\ConsumerCommand::class,
-			\Kdyby\RabbitMq\Command\PurgeConsumerCommand::class,
-			\Kdyby\RabbitMq\Command\RpcServerCommand::class,
-			\Kdyby\RabbitMq\Command\SetupFabricCommand::class,
-			\Kdyby\RabbitMq\Command\StdInProducerCommand::class,
-		] as $i => $class) {
-			$builder->addDefinition($this->prefix('console.' . $i))
+			\Kdyby\RabbitMq\Command\ConsumerCommand::class => ConsumerCommand::getDefaultName(),
+			\Kdyby\RabbitMq\Command\PurgeConsumerCommand::class => PurgeConsumerCommand::getDefaultName(),
+			\Kdyby\RabbitMq\Command\RpcServerCommand::class => RpcServerCommand::getDefaultName(),
+			\Kdyby\RabbitMq\Command\SetupFabricCommand::class => SetupFabricCommand::getDefaultName(),
+			\Kdyby\RabbitMq\Command\StdInProducerCommand::class => StdInProducerCommand::getDefaultName(),
+		] as $class => $name) {
+			$builder->addDefinition($this->prefix('console.' . strtr(Nette\Utils\Strings::webalize(explode(':', $name)[1]), ['-' => ''])))
 				->setType($class)
 				->addTag(self::TAG_COMMAND_KDYBY)
-				->addTag(self::TAG_COMMAND);
+				->addTag(self::TAG_COMMAND, $name);
 		}
 	}
 
