@@ -72,7 +72,7 @@ abstract class BaseConsumerCommand extends \Symfony\Component\Console\Command\Co
 			throw new \InvalidArgumentException('The -m option should be null or greater than 0');
 		}
 
-		$this->consumer = $this->connection->getConsumer($input->getArgument('name'));
+		$this->consumer = $this->connection->getConsumer((string) $input->getArgument('name'));
 
 		/** @var int|NULL $memoryLimit */
 		$memoryLimit = $input->getOption('memory-limit');
