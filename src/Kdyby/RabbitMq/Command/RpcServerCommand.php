@@ -22,7 +22,12 @@ class RpcServerCommand extends \Symfony\Component\Console\Command\Command
 	 */
 	public $connection;
 
-	protected function configure(): void
+	public static function getDefaultName(): string
+    {
+         return 'rabbitmq:rpc-server';
+    }
+
+    protected function configure(): void
 	{
 		$this
 			->setName('rabbitmq:rpc-server')

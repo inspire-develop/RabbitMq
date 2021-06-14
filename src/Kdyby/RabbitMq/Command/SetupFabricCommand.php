@@ -23,6 +23,11 @@ class SetupFabricCommand extends \Symfony\Component\Console\Command\Command
 	 */
 	public $container;
 
+		public static function getDefaultName(): string
+    {
+        return 'rabbitmq:setup-fabric';
+    }
+
 	protected function configure(): void
 	{
 		$this

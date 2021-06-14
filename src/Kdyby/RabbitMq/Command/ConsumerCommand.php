@@ -6,7 +6,12 @@ namespace Kdyby\RabbitMq\Command;
 
 class ConsumerCommand extends \Kdyby\RabbitMq\Command\BaseConsumerCommand
 {
-	protected function configure(): void
+    public static function getDefaultName(): string
+    {
+        return 'rabbitmq:consumer';
+    }
+
+    protected function configure(): void
 	{
 		parent::configure();
 
@@ -14,8 +19,4 @@ class ConsumerCommand extends \Kdyby\RabbitMq\Command\BaseConsumerCommand
 		$this->setDescription('Starts a configured consumer');
 	}
 
-	public static function getDefaultName()
-    {
-        return 'rabbitmq:consumer';
-    }
 }
