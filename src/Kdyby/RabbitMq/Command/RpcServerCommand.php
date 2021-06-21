@@ -39,7 +39,7 @@ class RpcServerCommand extends \Symfony\Component\Console\Command\Command
 	 * @param \Symfony\Component\Console\Output\OutputInterface $output An OutputInterface instance
 	 * @throws \InvalidArgumentException When the number of messages to consume is less than 0
 	 */
-	protected function execute(InputInterface $input, OutputInterface $output): void
+	protected function execute(InputInterface $input, OutputInterface $output): int
 	{
 		\define('AMQP_DEBUG', (bool) $input->getOption('debug'));
 
@@ -51,6 +51,8 @@ class RpcServerCommand extends \Symfony\Component\Console\Command\Command
 
 		$rpcServer = $this->connection->getRpcServer($input->getArgument('name'));
 		$rpcServer->start($amount);
+
+		return 0;
 	}
 
 }

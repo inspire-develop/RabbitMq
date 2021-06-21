@@ -37,7 +37,7 @@ class StdInProducerCommand extends \Symfony\Component\Console\Command\Command
 	 * @param \Symfony\Component\Console\Input\InputInterface $input An InputInterface instance
 	 * @param \Symfony\Component\Console\Output\OutputInterface $output An OutputInterface instance
 	 */
-	protected function execute(InputInterface $input, OutputInterface $output): void
+	protected function execute(InputInterface $input, OutputInterface $output): int
 	{
 		\define('AMQP_DEBUG', (bool) $input->getOption('debug'));
 
@@ -49,6 +49,8 @@ class StdInProducerCommand extends \Symfony\Component\Console\Command\Command
 		}
 
 		$producer->publish(\serialize($data));
+
+		return 0;
 	}
 
 }

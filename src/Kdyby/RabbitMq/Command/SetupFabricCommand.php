@@ -30,7 +30,7 @@ class SetupFabricCommand extends \Symfony\Component\Console\Command\Command
 			->addOption('debug', 'd', InputOption::VALUE_NONE, 'Enable Debugging');
 	}
 
-	protected function execute(InputInterface $input, OutputInterface $output): void
+	protected function execute(InputInterface $input, OutputInterface $output): int
 	{
 		if (\defined('AMQP_DEBUG') === FALSE) {
 			\define('AMQP_DEBUG', (bool) $input->getOption('debug'));
@@ -50,6 +50,8 @@ class SetupFabricCommand extends \Symfony\Component\Console\Command\Command
 				$service->setupFabric();
 			}
 		}
+
+		return 0;
 	}
 
 }
