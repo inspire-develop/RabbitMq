@@ -11,11 +11,6 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class RpcServerCommand extends \Symfony\Component\Console\Command\Command
 {
-    public static function getDefaultName()
-    {
-        return 'rabbitmq:rpc-server';
-    }
-
 	/**
 	 * @inject
 	 * @var \Kdyby\RabbitMq\Connection

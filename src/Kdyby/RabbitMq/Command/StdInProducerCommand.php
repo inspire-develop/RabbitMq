@@ -11,11 +11,6 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class StdInProducerCommand extends \Symfony\Component\Console\Command\Command
 {
-    public static function getDefaultName()
-    {
-        return 'rabbitmq:stdin-producer';
-    }
-
     /**
 	 * @inject
 	 * @var \Kdyby\RabbitMq\Connection

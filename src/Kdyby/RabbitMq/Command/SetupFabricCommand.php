@@ -11,12 +11,6 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class SetupFabricCommand extends \Symfony\Component\Console\Command\Command
 {
-
-    public static function getDefaultName()
-    {
-        return 'rabbitmq:setup-fabric';
-    }
-
     /**
 	 * @inject
 	 * @var \Nette\DI\Container
